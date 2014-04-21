@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.ssh.service.IuserBiz;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:applicationContext.xml" })
@@ -16,7 +17,11 @@ public class UserBizTest {
 	@Test
 	public void test() {
 
-		System.out.println(userBiz.getListUser());
+		try {
+			System.out.println(userBiz.getListUser());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

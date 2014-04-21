@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.ssh.bean.User;
-import org.ssh.biz.IuserBiz;
+import org.ssh.service.IuserBiz;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -13,13 +13,18 @@ public class UserAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	@Resource
 	private IuserBiz userBiz;
+	
 	private List<User> list;
 	private String email;
 	private String password;
 
 	@Override
-	public String execute() throws Exception {
-		list = userBiz.getListUser();
+	public String execute() {
+		try {
+			list = userBiz.getListUser();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 

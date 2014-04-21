@@ -2,20 +2,15 @@ package org.ssh.dao;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.ssh.bean.User;
 
 @Repository
-public class UserDao {
-	@Resource
-	private SessionFactory sessionFactory;
+public class UserDao extends BaseDao<User> {
 
-	public List<User> getListUser() {
+	public List<User> getListUser() throws Exception {
 		List<User> list = null;
-		list = sessionFactory.openSession().createQuery("from User").list();
+		list = this.findAll();
 		return list;
 	}
 }

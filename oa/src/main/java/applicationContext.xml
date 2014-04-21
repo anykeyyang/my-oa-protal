@@ -11,8 +11,7 @@
             http://www.springframework.org/schema/aop
             http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
             http://www.springframework.org/schema/tx
-            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd"
-	default-autowire="byName">
+            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 	<!-- 基于Annotation的bean autowireed注入 官方推荐jsr规范Resource注入 -->
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
@@ -20,6 +19,7 @@
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
 	<context:component-scan base-package="*">
 	</context:component-scan>
+	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
@@ -77,11 +77,13 @@
 	<tx:advice transaction-manager="transactionManager" id="tm">
 		<tx:attributes>
 			<tx:method name="get*" propagation="REQUIRED" />
+			<tx:method name="start*" propagation="REQUIRED" />
+			<tx:method name="*" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut expression="execution(* org.ssh.biz.*.*(..))"
+		<aop:pointcut expression="execution(* org.ssh.service..*.*(..))"
 			id="tp" />
 		<aop:advisor advice-ref="tm" id="ta" pointcut-ref="tp" />
 	</aop:config>
