@@ -6,7 +6,10 @@ import java.util.Map;
 
 import org.activiti.engine.form.TaskFormData;
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.impl.persistence.entity.TaskEntity;
+import org.activiti.engine.repository.DiagramLayout;
+import org.activiti.engine.repository.DiagramNode;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -38,20 +41,21 @@ public interface ProcessService {
 	/**
 	 * 获取本人发起的流程
 	 * 
-	 * @param userName
-	 * @param hasFinished
-	 *            是否已经完成
+	 * @param userId
+	 * @param finishFlag
+	 *            是否已经完成("all","finish","unfinish")
 	 * @return
 	 */
 	public List<HistoricProcessInstance> getHasActivedProcessByUser(
-			String userName, Boolean hasFinished);
+			String userId, String finishFlag);
 
 	/**
 	 * 流程启动
 	 * 
 	 * @param processDefinitionId
 	 */
-	public ProcessInstance startProcessInstance(String processDefinitionId, String userId);
+	public ProcessInstance startProcessInstance(String processDefinitionId,
+			String businessKey, String userId);
 
 	/**
 	 * 流程部署
@@ -110,10 +114,35 @@ public interface ProcessService {
 	public Boolean completeTask(String taskId, Map map);
 
 	/**
-	 * 流程跟踪
+	 * 获取流程图片
 	 * 
 	 * @param processInstanceId
 	 * @return
 	 */
-	public InputStream readProcessSource(String processInstanceId);
+	public String getProcessImage(String processDefinitionId);
+
+	/**
+	 * 获取流程xml各节点坐标
+	 * 
+	 * @param processDefinitionId
+	 * @return
+	 */
+	public Map<String, DiagramNode> getDiagramLayout(String processDefinitionId);
+
+	/**
+	 * 获取已经完成的任务
+	 * 
+	 * @param processInstanceid
+	 * @return
+	 */
+	public List<HistoricTaskInstance> getTasksHasFinished(
+			String processInstanceid);
+
+	/**
+	 * 获取用户参与的流程
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	public List<HistoricProcessInstance> getInstanceInvolvedUser(String userid);
 }

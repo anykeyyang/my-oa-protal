@@ -208,17 +208,20 @@ $(function(){
 					</div>
 					<div class="accordionHeader">
 						<h2>
-							<span>Folder</span>安防维护
+							<span>Folder</span>流程管理
 						</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
 							<li><a
-								href="${ctx}//security/TAfVariables_getTAfVariables.action"
-								target="navTab" rel="afvariables" fresh="true">标签变量维护</a></li>
+								href="${ctx}/process/process_getDeployedProcess.action"
+								target="navTab" rel="deployedProcess" fresh="true">流程管理</a></li>
+								<li><a
+								href="${ctx}/process/process_getInstanceInvolvedUser.action"
+								target="navTab" rel="instance" fresh="true">流程实例管理</a></li>
 							<li><a
-								href="${ctx}//security/TAfVariables_getLogicExpression.action"
-								target="navTab" rel="logicexpression" fresh="true">逻辑表达式维护</a></li>
+								href="${ctx}/process/process_getUserTask.action"
+								target="navTab" rel="userTask" fresh="true">待办任务</a></li>
 						</ul>
 					</div>
 					

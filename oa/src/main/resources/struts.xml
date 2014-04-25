@@ -8,4 +8,5 @@
 			<result name="success">/WEB-INF/jsp/home.jsp</result>
 		</action>
 	</package>
+	<include file="struts/struts-process.xml"></include>
 </struts>
