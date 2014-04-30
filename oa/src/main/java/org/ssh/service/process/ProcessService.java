@@ -7,8 +7,7 @@ import java.util.Map;
 import org.activiti.engine.form.TaskFormData;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
-import org.activiti.engine.impl.persistence.entity.TaskEntity;
-import org.activiti.engine.repository.DiagramLayout;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.repository.DiagramNode;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -108,10 +107,12 @@ public interface ProcessService {
 	/**
 	 * 任务完成
 	 * 
+	 * @param <T>
+	 * 
 	 * @param taskId
 	 * @return
 	 */
-	public Boolean completeTask(String taskId, Map map);
+	public <T> Boolean completeTask(String taskId, T t);
 
 	/**
 	 * 获取流程图片
@@ -145,4 +146,26 @@ public interface ProcessService {
 	 * @return
 	 */
 	public List<HistoricProcessInstance> getInstanceInvolvedUser(String userid);
+
+	/**
+	 * 驳回流程
+	 * 
+	 * @param taskId
+	 *            当前任务ID
+	 * @param activityId
+	 *            驳回节点ID
+	 * @param variables
+	 *            流程存储参数
+	 * @throws Exception
+	 */
+	public void backProcess(String taskId, String activityId,
+			Map<String, Object> variables) throws Exception;
+
+	/**
+	 * 根据当前任务ID，查询可以驳回的任务节点
+	 * 
+	 * @param taskId
+	 *            当前任务ID
+	 */
+	public List<ActivityImpl> findBackAvtivity(String taskId) throws Exception;
 }

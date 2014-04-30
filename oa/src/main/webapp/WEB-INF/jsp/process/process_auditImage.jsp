@@ -9,7 +9,13 @@
     <img alt="流程图片" src="data:image/png;base64,${auditImageBase64}">
 </div>
 <c:forEach var="v" items="${activityList}">
-${v.x}
+<c:choose>
+<c:when test="${v.state=='withdraw'}">
+<div style='position:absolute;left:${v.x}px;top:${v.y}px;width:${v.width}px;height:${v.height}px;border-style:solid;border-color:red;border-radius:10px;'></div>
+</c:when>
+<c:otherwise>
 <div style='position:absolute;left:${v.x}px;top:${v.y}px;width:${v.width}px;height:${v.height}px;border-style:solid;border-color:#00FF00;border-radius:10px;'></div>
+</c:otherwise>
+</c:choose>
 </c:forEach>
 

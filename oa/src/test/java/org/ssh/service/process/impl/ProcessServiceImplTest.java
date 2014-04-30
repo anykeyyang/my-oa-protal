@@ -1,6 +1,7 @@
 package org.ssh.service.process.impl;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,7 @@ import javax.annotation.Resource;
 
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
-import org.activiti.engine.repository.DiagramLayout;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.repository.DiagramNode;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -61,11 +62,12 @@ public class ProcessServiceImplTest extends
 		for (Task task : tasks) {
 			System.out.println("tid:" + task.getId());
 			System.out.println("name:" + task.getName());
+			System.out.println("assign:" + task.getAssignee());
 		}
 
 	}
 
-	 @Test
+	// @Test
 	public void testGetDiagram() {
 		// leave:1:4
 		Map<String, DiagramNode> layout = processService
@@ -98,13 +100,46 @@ public class ProcessServiceImplTest extends
 		}
 	}
 
-	//@Test
+	@Test
 	public void testGetHiTaskInstance() {
 		List<HistoricTaskInstance> tasks = processService
-				.getTasksHasFinished("1101");
+				.getTasksHasFinished("1001");
 		assertNotNull(tasks);
 		for (HistoricTaskInstance task : tasks) {
 			System.out.println(task.getTaskDefinitionKey());
+			System.out.println(task.getDeleteReason());
+		}
+	}
+
+	// @Test
+	public void testClaim() {
+		processService.claimTask("1502", "leaderuser");
+	}
+
+	// @Test
+	public void testCompleteTask() {
+		boolean flag = processService.completeTask("1502", null);
+		assertTrue(flag);
+	}
+
+	// @Test
+	public void testBackActivity() {
+		try {
+			List<ActivityImpl> result = processService.findBackAvtivity("1502");
+			for (ActivityImpl activity : result) {
+				System.out.println(activity.getId());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// @Test
+	public void testBackProcess() {
+		try {
+			processService.backProcess("1404", "deptLeaderAudit", null);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -59,7 +59,20 @@
 					<td>${v.description}</td>
 					<td>${v.createTime}</td>
 					<td>${v.assignee}</td>
-					<td></td>
+					<td>
+					<c:choose>
+					<c:when test="${v.assignee==null}">
+					<a title="签收" class="btnDel"
+					   href="${ctx}/process/process_getAuditImage.action?processDefinitionId=${v.processDefinitionId}&processInstanceid=${v.id}"
+					   target="navTabToDo"/>
+					</c:when>
+					<c:otherwise>
+					<a title="审批 " class="btnEdit"
+					   href="${ctx}/process/process_getAuditImage.action?processDefinitionId=${v.processDefinitionId}&processInstanceid=${v.id}"
+					   target="dialog"  rel="approvePage" mask="true"/>
+					</c:otherwise>
+					</c:choose>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -8,14 +8,14 @@ import javax.annotation.Resource;
 
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
-import org.activiti.engine.repository.DiagramLayout;
 import org.activiti.engine.repository.DiagramNode;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
 import org.ssh.service.process.ProcessService;
 import org.ssh.vo.ActivityInfo;
+import org.ssh.web.action.BaseAction;
 
-public class ProcessAction {
+public class ProcessAction extends BaseAction {
 	@Resource
 	private ProcessService processService;
 
@@ -25,6 +25,7 @@ public class ProcessAction {
 
 	private String processDefinitionId;
 	private String processInstanceid;
+	private String taskid;
 
 	private String auditImageBase64;
 	private List<ActivityInfo> activityList;
@@ -63,8 +64,14 @@ public class ProcessAction {
 		return "userTaskManagement";
 	}
 
+	/**
+	 * 流程跟踪图片生成
+	 * 
+	 * @return
+	 */
 	public String getAuditImage() {
 		activityList = new ArrayList<ActivityInfo>();
+		List<String> keyList = new ArrayList<String>();
 		// 获取流程图片
 		auditImageBase64 = processService.getProcessImage(processDefinitionId);
 		// 获取历史任务
@@ -77,17 +84,54 @@ public class ProcessAction {
 		for (HistoricTaskInstance taskInstance : finishedTasks) {
 			ActivityInfo activity = new ActivityInfo();
 			String key = taskInstance.getTaskDefinitionKey();
-			DiagramNode node = layout.get(key);
-			activity.setTask(taskInstance);
-			// 坐标修正
-			activity.setX(node.getX() + 4);
-			activity.setY(node.getY() + 30);
-			activity.setWidth(node.getWidth());
-			activity.setHeight(node.getHeight());
-			activityList.add(activity);
+			if (keyList.contains(key)) {
+				int i = keyList.indexOf(key);
+				ActivityInfo info = activityList.get(i);
+				info.getWithdrawTasks().add(taskInstance);
+				// 判断任务是否完成
+				if (taskInstance.getEndTime() != null) {
+					info.setState("withdraw");
+				} else {
+					info.setState("current");
+				}
+			} else {
+				DiagramNode node = layout.get(key);
+				activity.setTask(taskInstance);
+				// 坐标修正
+				activity.setX(node.getX() + 4);
+				activity.setY(node.getY() + 30);
+				activity.setWidth(node.getWidth());
+				activity.setHeight(node.getHeight());
+				activity.setState("complete");
+				activityList.add(activity);
+				keyList.add(key);
+			}
+
 		}
 
 		return "auditImage";
+
+	}
+
+	/**
+	 * 任务签收
+	 */
+	public void claim() {
+		String userid = (String) this.request.getSession().getAttribute(
+				"userid");
+		processService.claimTask(taskid, userid);
+	}
+
+	/**
+	 * 处理任务
+	 * 
+	 * @return
+	 */
+	public String completeTask() {
+		// Map map = request.getParameterMap();
+		// 根据businessKey不同，Null传入不同的VO对象
+		processService.completeTask(taskid, null);
+		return null;
 
 	}
 
@@ -170,5 +214,13 @@ public class ProcessAction {
 
 	public void setActivityList(List<ActivityInfo> activityList) {
 		this.activityList = activityList;
+	}
+
+	public String getTaskid() {
+		return taskid;
+	}
+
+	public void setTaskid(String taskid) {
+		this.taskid = taskid;
 	}
 }
