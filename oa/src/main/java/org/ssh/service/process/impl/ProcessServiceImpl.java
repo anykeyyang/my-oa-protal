@@ -38,6 +38,8 @@ import org.activiti.engine.task.Task;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.ssh.bean.process.ActHiTaskinst;
+import org.ssh.dao.process.ProcessDao;
 import org.ssh.service.process.ProcessService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -59,6 +61,8 @@ public class ProcessServiceImpl implements ProcessService {
 	private TaskService taskService;
 	@Resource
 	private HistoryService historyService;
+	@Resource
+	private ProcessDao processDao;
 
 	@Override
 	public List<ProcessDefinition> getProcessDefinitionActive() {
@@ -256,6 +260,41 @@ public class ProcessServiceImpl implements ProcessService {
 				findActivitiImpl(taskId, null), new ArrayList<ActivityImpl>(),
 				new ArrayList<ActivityImpl>());
 		return reverList(rtnList);
+	}
+
+	/**
+	 * 中止流程(特权人直接审批通过等)
+	 * 
+	 * @param taskId
+	 */
+	@Override
+	public void endProcess(String taskId) throws Exception {
+		ActivityImpl endActivity = findActivitiImpl(taskId, "end");
+		commitProcess(taskId, null, endActivity.getId());
+	}
+
+	@Override
+	public boolean cancelProcessInstance(String processInstanceid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean suspendProcessInstance(String processInstanceid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/**
+	 * 流程删除
+	 * 
+	 * @param processInstanceid
+	 * @return
+	 */
+	@Override
+	public boolean deleteProcessInstance(String processInstanceid) {
+		return false;
+
 	}
 
 	/**
@@ -662,10 +701,13 @@ public class ProcessServiceImpl implements ProcessService {
 		ActivityImpl pointActivity = findActivitiImpl(taskId, activityId);
 		// 设置新流向的目标节点
 		newTransition.setDestination(pointActivity);
-
 		// 执行转向任务
 		taskService.complete(taskId, variables);
+		
 		// 修改deleteReason
+		ActHiTaskinst hitaskInstance = processDao.gethiTaskInstanceByid(taskId);
+		hitaskInstance.setDeleteReason("withdraw");
+		processDao.update(hitaskInstance);
 		
 		// 删除目标节点新流入
 		pointActivity.getIncomingTransitions().remove(newTransition);
@@ -740,4 +782,5 @@ public class ProcessServiceImpl implements ProcessService {
 		bounds.setHeight(Double.valueOf(boundsElement.getAttribute("height")));
 		return bounds;
 	}
+
 }

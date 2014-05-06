@@ -33,6 +33,10 @@ public class ProcessAction extends BaseAction {
 	private List<HistoricProcessInstance> hiProcessInstance;
 	private List<Task> tasks;
 
+	public String test() {
+		return "test";
+	}
+
 	/**
 	 * 获取部署流程
 	 * 

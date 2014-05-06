@@ -14,6 +14,8 @@
 			</result>
 			<result name="auditImage">/WEB-INF/jsp/process/process_auditImage.jsp
 			</result>
+			<result name="test">/WEB-INF/jsp/process/process_test.jsp
+			</result>
 		</action>
 	</package>
 </struts>

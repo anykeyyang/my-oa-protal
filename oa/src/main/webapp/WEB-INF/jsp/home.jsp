@@ -2,284 +2,264 @@
 	pageEncoding="utf-8"%>
 <%@ page isELIgnored="false" %> 
 <%pageContext.setAttribute("ctx", request.getContextPath());%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=8" />
-<title>监狱信息化综合管理平台</title>
-
-<link href="${ctx}/dwz/themes/default/style.css" rel="stylesheet"
-	type="text/css" media="screen" />
-<link href="${ctx}/dwz/themes/css/core.css" rel="stylesheet"
-	type="text/css" media="screen" />
-<link href="${ctx}/dwz/themes/css/print.css" rel="stylesheet"
-	type="text/css" media="print" />
-<link href="${ctx}/dwz/uploadify/css/uploadify.css"
-	rel="stylesheet" type="text/css" media="screen" />
-<!--如果是IE浏览器 [if IE]>
-<link href="themes/css/ieHack.css" rel="stylesheet" type="text/css" media="screen"/>
-<![endif]-->
-<!--如果是IE浏览器9 [if lte IE 9]>
-<script src="js/speedup.js" type="text/javascript"></script>
-<![endif]-->
-
-<script src="${ctx}/dwz/js/jquery-1.7.2.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/jquery.cookie.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/jquery.validate.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/jquery.bgiframe.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/xheditor/xheditor-1.1.14-zh-cn.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/uploadify/scripts/jquery.uploadify.js"
-	type="text/javascript"></script>
-<!-- svg图表  supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+ -->
-<script type="text/javascript" src="${ctx}/dwz/chart/raphael.js"></script>
-<script type="text/javascript" src="${ctx}/dwz/chart/g.raphael.js"></script>
-<script type="text/javascript" src="${ctx}/dwz/chart/g.bar.js"></script>
-<script type="text/javascript" src="${ctx}/dwz/chart/g.line.js"></script>
-<script type="text/javascript" src="${ctx}/dwz/chart/g.pie.js"></script>
-<script type="text/javascript" src="${ctx}/dwz/chart/g.dot.js"></script>
-<script src="${ctx}/dwz/js/dwz.core.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.util.date.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.validate.method.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.regional.zh.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.barDrag.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.drag.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.tree.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.accordion.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.ui.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.theme.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.switchEnv.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.alertMsg.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.contextmenu.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.navTab.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.tab.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.resize.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.dialog.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.dialogDrag.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.sortDrag.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.cssTable.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.stable.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.taskBar.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.ajax.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.pagination.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.database.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.datepicker.js"
-	type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.effects.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.panel.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.checkbox.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.history.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.combox.js" type="text/javascript"></script>
-<script src="${ctx}/dwz/js/dwz.print.js" type="text/javascript"></script>
-<script src="${ctx}/js/json2.js" type="text/javascript"></script>
-<!--
-<script src="bin/dwz.min.js" type="text/javascript"></script>
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0.2
+Version: 1.5.4
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
 -->
-<script src="${ctx}/dwz/js/dwz.regional.zh.js"
-	type="text/javascript"></script>
-
-<script type="text/javascript">
-<!-- 初始化框架配置 -->
-$(function(){
-	DWZ.init("${ctx}/dwz/dwz.frag.xml", {
-		loginUrl:"login_dialog.html", loginTitle:"登录",	// 弹出登录对话框
-		loginUrl:"login.html",	// 跳到登录页面
-		statusCode:{ok:200, error:300, timeout:301}, //【可选】
-		pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage"}, //【可选】
-		debug:false,	// 调试模式 【true|false】
-		callback:function(){
-			initEnv();
-			$("#themeList").theme({themeBase:"themes"}); // themeBase 相对于index页面的主题base路径
-		}
-	});
-});
-
-</script>
-
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>Metronic | Admin Dashboard Template</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<meta name="MobileOptimized" content="320">
+	<%@include file="/common/head.jsp" %>
+	<!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
+	<link href="${ctx}/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+	<link href="${ctx}/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="${ctx}/favicon.ico" />
 </head>
-
-<body scroll="no">
-	<div id="layout">
-		<div id="header">
-			<div class="headerNav">
-				<a class="logo" href="#">标志</a>
-				<ul class="nav">
-					</br>
-					<li><a href="${ctx}//login.action">退出</a></li>
-				</ul>
-			</div>
-
-			<!-- navMenu -->
-
-		</div>
-
-		<div id="leftside">
-			<div id="sidebar_s">
-				<div class="collapse">
-					<div class="toggleCollapse">
-						<div></div>
-					</div>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+	<!-- BEGIN HEADER -->   
+	<%@include file="/common/topnavbar.jsp" %>
+	<!-- END HEADER -->
+	<div class="clearfix"></div>
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<%@include file="/common/sidemenu.jsp" %>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN PAGE -->
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+					<h3 class="page-title">
+						Dashboard <small>statistics and more</small>
+					</h3>
+					<ul class="page-breadcrumb breadcrumb">
+						<li>
+							<i class="fa fa-home"></i>
+							<a href="index.html">Home</a> 
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li><a href="#">Dashboard</a></li>
+						<li class="pull-right">
+							<div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
+								<i class="fa fa-calendar"></i>
+								<span></span>
+								<i class="fa fa-angle-down"></i>
+							</div>
+						</li>
+					</ul>
+					<!-- END PAGE TITLE & BREADCRUMB-->
 				</div>
 			</div>
-			<div id="sidebar">
-				<div class="toggleCollapse">
-					<h2>主菜单</h2>
-					<div>点击收缩</div>
-				</div>
-				
-				<div class="accordion" fillSpace="sidebar">
-				
-					
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>系统注册
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a
-								href="${ctx}/integrate/system_getAllSystems.action"
-								target="navTab" rel="sysreg" fresh="true">系统注册</a></li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>用户权限
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a href="${ctx}/users/userManage.action"
-								target="navTab" rel="user" fresh="true">用户管理</a></li>
-							<li><a href="${ctx}/users/userManage!getRole.action"
-								target="navTab" rel="role" fresh="true">角色权限</a></li>
-							<li><a href="${ctx}/users/userManage!getDept.action"
-								target="navTab" rel="dept" fresh="true">部门管理</a></li>
-								
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>日志审计
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a
-								href="${ctx}/operatelog/operatelogaction_prepare.action"
-								target="navTab" rel="operatelogaction" fresh="true">操作日志</a></li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>信息查询
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a
-								href="${ctx}/criminal/criminal_getBaseInfo.action"
-								target="navTab" rel="criminal" fresh="true">罪犯综合信息</a></li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>字典维护
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a
-								href="${ctx}/datadictionary/datadictionaryaction_ditionarydatapre.action?checkId=30"
-								target="navTab" rel="ditionarydata" fresh="true">系统字典维护</a></li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>流程管理
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a
-								href="${ctx}/process/process_getDeployedProcess.action"
-								target="navTab" rel="deployedProcess" fresh="true">流程管理</a></li>
-								<li><a
-								href="${ctx}/process/process_getInstanceInvolvedUser.action"
-								target="navTab" rel="instance" fresh="true">流程实例管理</a></li>
-							<li><a
-								href="${ctx}/process/process_getUserTask.action"
-								target="navTab" rel="userTask" fresh="true">待办任务</a></li>
-						</ul>
-					</div>
-					
-					<div class="accordionHeader">
-						<h2>
-							<span>Folder</span>安防配置
-						</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a
-								href="${ctx}/safeConfig/regionManage_getRegionList.action"
-								target="navTab" rel="regionManage" fresh="true">区域管理</a></li>
-							<li><a
-								href="${ctx}/safeConfig/stationManage_getStationList.action"
-								target="navTab" rel="station" fresh="true">站点管理</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="container">
-			<div id="navTab" class="tabsPage">
-				<div class="tabsPageHeader">
-					<div class="tabsPageHeaderContent">
-						<!-- 显示左右控制时新增 class="tabsPageHeaderMargin" -->
-						<ul class="navTab-tab">
-							<li tabid="main" class="main"><a href="javascript:;"><span><span
-										class="home_icon">我的主页</span></span></a></li>
-						</ul>
-					</div>
-					<div class="tabsLeft">left</div>
-					<!-- 禁用只需要新增一个样式 class="tabsLeft tabsLeftDisabled" -->
-					<div class="tabsRight">right</div>
-					<!-- 禁用只需要新增一个样式 class="tabsRight tabsRightDisabled" -->
-					<div class="tabsMore">more</div>
-				</div>
-				<ul class="tabsMoreList">
-					<li><a href="javascript:;">我的主页</a></li>
-				</ul>
-				<div class="navTab-panel tabsPageContent layoutBox">
-					<div class="page unitBox">
-						<div class="pageFormContent" layoutH="0"
-							style="margin:0px;padding:0px;">
-						<img src="${ctx}/images/bg.JPG"  style="width:100%;height:99%;"/>
-							
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN DASHBOARD STATS -->
+			<div class="row ">
+				<div class="col-md-6 col-sm-6">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet box blue calendar">
+						<div class="portlet-title">
+							<div class="caption"><i class="fa fa-calendar"></i>Calendar</div>
+						</div>
+						<div class="portlet-body light-grey">
+							<div id="calendar"></div>
 						</div>
 					</div>
-
+					<!-- END PORTLET-->
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet">
+						<div class="portlet-title line">
+							<div class="caption"><i class="fa fa-comments"></i>Chats</div>
+							<div class="tools">
+								<a href="" class="collapse"></a>
+								<a href="#portlet-config" data-toggle="modal" class="config"></a>
+								<a href="" class="reload"></a>
+								<a href="" class="remove"></a>
+							</div>
+						</div>
+						<div class="portlet-body" id="chats">
+							<div class="scroller" style="height: 435px;" data-always-visible="1" data-rail-visible1="1">
+								<ul class="chats">
+									<li class="in">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Bob Nilson</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</span>
+										</div>
+									</li>
+									<li class="out">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar2.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Lisa Wong</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</span>
+										</div>
+									</li>
+									<li class="in">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Bob Nilson</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</span>
+										</div>
+									</li>
+									<li class="out">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar3.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Richard Doe</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</span>
+										</div>
+									</li>
+									<li class="in">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar3.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Richard Doe</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</span>
+										</div>
+									</li>
+									<li class="out">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Bob Nilson</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</span>
+										</div>
+									</li>
+									<li class="in">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar3.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Richard Doe</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
+											sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</span>
+										</div>
+									</li>
+									<li class="out">
+										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
+										<div class="message">
+											<span class="arrow"></span>
+											<a href="#" class="name">Bob Nilson</a>
+											<span class="datetime">at Jul 25, 2012 11:09</span>
+											<span class="body">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod tincidunt ut laoreet.
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="chat-form">
+								<div class="input-cont">   
+									<input class="form-control" type="text" placeholder="Type a message here..." />
+								</div>
+								<div class="btn-cont"> 
+									<span class="arrow"></span>
+									<a href="" class="btn blue icn-only"><i class="fa fa-check icon-white"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END PORTLET-->
 				</div>
 			</div>
 		</div>
-
+		<!-- END PAGE -->
 	</div>
-
-	<div id="footer">
-		Copyright &copy; 2013 <a href="demo_page2.html" target="dialog">技术支持：山东万博科技股份有限公司</a>
-		联系电话：82311719
+	<!-- END CONTAINER -->
+	<!-- BEGIN FOOTER -->
+	<div class="footer">
+		<div class="footer-inner">
+			2013 &copy; Metronic by keenthemes.
+		</div>
+		<div class="footer-tools">
+			<span class="go-top">
+			<i class="fa fa-angle-up"></i>
+			</span>
+		</div>
 	</div>
+	<!-- END FOOTER -->
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->   
+	<!--[if lt IE 9]>
+	<script src="assets/plugins/respond.min.js"></script>
+	<script src="assets/plugins/excanvas.min.js"></script> 
+	<![endif]-->   
+	<%@include file="/common/foot_js.jsp" %>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script src="${ctx}/assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/flot/jquery.flot.resize.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>     
+	<script src="${ctx}/assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+	<!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+	<script src="${ctx}/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>  
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="${ctx}/assets/scripts/app.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/scripts/index.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/scripts/tasks.js" type="text/javascript"></script>        
+	<!-- END PAGE LEVEL SCRIPTS -->  
+	<script>
+		jQuery(document).ready(function() {    
+		   App.init(); // initlayout and core plugins
+		   Index.init();
+		   Index.initCalendar(); // init index page's custom scripts
+		   Index.initCharts(); // init index page's custom scripts
+		   Index.initChat();
+		   Index.initMiniCharts();
+		   Index.initDashboardDaterange();
+		   Index.initIntro();
+		   Tasks.initDashboardWidget();
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->
 </body>
+<!-- END BODY -->
 </html>

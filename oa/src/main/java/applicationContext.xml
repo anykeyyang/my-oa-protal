@@ -49,6 +49,7 @@
 		<property name="packagesToScan">
 			<list>
 				<value>org.ssh.bean</value>
+				<value>org.ssh.bean。*</value>
 			</list>
 		</property>
 

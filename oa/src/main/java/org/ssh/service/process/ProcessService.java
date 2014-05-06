@@ -168,4 +168,36 @@ public interface ProcessService {
 	 *            当前任务ID
 	 */
 	public List<ActivityImpl> findBackAvtivity(String taskId) throws Exception;
+
+	/**
+	 * 流程撤消
+	 * 
+	 * @param processInstanceid
+	 * @return
+	 */
+	public boolean cancelProcessInstance(String processInstanceid);
+
+	/**
+	 * 挂起流程
+	 * 
+	 * @param processInstanceid
+	 * @return
+	 */
+	public boolean suspendProcessInstance(String processInstanceid);
+
+	/**
+	 * 流程删除
+	 * 
+	 * @param processInstanceid
+	 * @return
+	 */
+	public boolean deleteProcessInstance(String processInstanceid);
+
+	/**
+	 * 中止流程(特权人直接审批通过等)
+	 * 
+	 * @param taskId
+	 */
+	public void endProcess(String taskId) throws Exception;
+
 }
