@@ -214,7 +214,7 @@ var App = function () {
         jQuery('.page-sidebar').on('click', ' li > a.ajaxify', function (e) {
             e.preventDefault();
             App.scrollTop();
-
+            
             var url = $(this).attr("href");
             var menuContainer = jQuery('.page-sidebar ul');
             var pageContent = $('.page-content');

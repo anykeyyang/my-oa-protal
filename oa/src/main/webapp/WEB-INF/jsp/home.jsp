@@ -16,197 +16,119 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- BEGIN HEAD -->
 <head>
 	<meta charset="utf-8" />
-	<title>Metronic | Admin Dashboard Template</title>
+	<title>OA</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
 	<meta name="MobileOptimized" content="320">
-	<%@include file="/common/head.jsp" %>
-	<!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
-	<link href="${ctx}/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-	<link href="${ctx}/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-	<link href="${ctx}/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-	<link href="${ctx}/assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-	<link href="${ctx}/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->          
+	<link href="${ctx}/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="${ctx}/assets/plugins/select2/select2_metro.css" />
+	<!-- END PAGE LEVEL STYLES -->
+	<!-- BEGIN THEME STYLES --> 
+	<link href="${ctx}/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+	<link href="${ctx}/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link rel="stylesheet" href="${ctx}/assets/plugins/data-tables/DT_bootstrap.css" />
+	<link href="${ctx}/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+	<!-- END THEME STYLES -->
 	<link rel="shortcut icon" href="${ctx}/favicon.ico" />
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body class="page-header-fixed">
+<body class="page-header-fixed page-sidebar-fixed">
 	<!-- BEGIN HEADER -->   
 	<%@include file="/common/topnavbar.jsp" %>
 	<!-- END HEADER -->
 	<div class="clearfix"></div>
 	<!-- BEGIN CONTAINER -->
 	<div class="page-container">
-		<!-- BEGIN SIDEBAR -->
+		<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->               
+		<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+						<h4 class="modal-title">Modal title</h4>
+					</div>
+					<div class="modal-body">
+						Widget settings form goes here
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn blue">Save changes</button>
+						<button type="button" class="btn default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+		<!-- BEGIN SIDEBAR1 -->
 		<%@include file="/common/sidemenu.jsp" %>
-		<!-- END SIDEBAR -->
+		<!-- END SIDEBAR1 -->
 		<!-- BEGIN PAGE -->
 		<div class="page-content">
-			<!-- BEGIN PAGE HEADER-->
-			<div class="row">
-				<div class="col-md-12">
-					<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-					<h3 class="page-title">
-						Dashboard <small>statistics and more</small>
-					</h3>
-					<ul class="page-breadcrumb breadcrumb">
-						<li>
-							<i class="fa fa-home"></i>
-							<a href="index.html">Home</a> 
-							<i class="fa fa-angle-right"></i>
-						</li>
-						<li><a href="#">Dashboard</a></li>
-						<li class="pull-right">
-							<div id="dashboard-report-range" class="dashboard-date-range tooltips" data-placement="top" data-original-title="Change dashboard date range">
-								<i class="fa fa-calendar"></i>
-								<span></span>
-								<i class="fa fa-angle-down"></i>
-							</div>
-						</li>
-					</ul>
-					<!-- END PAGE TITLE & BREADCRUMB-->
+			<!-- BEGIN STYLE CUSTOMIZER -->
+			<div class="theme-panel hidden-xs hidden-sm">
+				<div class="toggler"></div>
+				<div class="toggler-close"></div>
+				<div class="theme-options">
+					<div class="theme-option theme-colors clearfix">
+						<span>THEME COLOR</span>
+						<ul>
+							<li class="color-black current color-default" data-style="default"></li>
+							<li class="color-blue" data-style="blue"></li>
+							<li class="color-brown" data-style="brown"></li>
+							<li class="color-purple" data-style="purple"></li>
+							<li class="color-grey" data-style="grey"></li>
+							<li class="color-white color-light" data-style="light"></li>
+						</ul>
+					</div>
+					<div class="theme-option">
+						<span>Layout</span>
+						<select class="layout-option form-control input-small">
+							<option value="fluid" selected="selected">Fluid</option>
+							<option value="boxed">Boxed</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>Header</span>
+						<select class="header-option form-control input-small">
+							<option value="fixed" selected="selected">Fixed</option>
+							<option value="default">Default</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>Sidebar</span>
+						<select class="sidebar-option form-control input-small">
+							<option value="fixed">Fixed</option>
+							<option value="default" selected="selected">Default</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>Footer</span>
+						<select class="footer-option form-control input-small">
+							<option value="fixed">Fixed</option>
+							<option value="default" selected="selected">Default</option>
+						</select>
+					</div>
 				</div>
 			</div>
-			<!-- END PAGE HEADER-->
-			<!-- BEGIN DASHBOARD STATS -->
-			<div class="row ">
-				<div class="col-md-6 col-sm-6">
-					<!-- BEGIN PORTLET-->
-					<div class="portlet box blue calendar">
-						<div class="portlet-title">
-							<div class="caption"><i class="fa fa-calendar"></i>Calendar</div>
-						</div>
-						<div class="portlet-body light-grey">
-							<div id="calendar"></div>
-						</div>
-					</div>
-					<!-- END PORTLET-->
-				</div>
-				<div class="col-md-6 col-sm-6">
-					<!-- BEGIN PORTLET-->
-					<div class="portlet">
-						<div class="portlet-title line">
-							<div class="caption"><i class="fa fa-comments"></i>Chats</div>
-							<div class="tools">
-								<a href="" class="collapse"></a>
-								<a href="#portlet-config" data-toggle="modal" class="config"></a>
-								<a href="" class="reload"></a>
-								<a href="" class="remove"></a>
-							</div>
-						</div>
-						<div class="portlet-body" id="chats">
-							<div class="scroller" style="height: 435px;" data-always-visible="1" data-rail-visible1="1">
-								<ul class="chats">
-									<li class="in">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Bob Nilson</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-											</span>
-										</div>
-									</li>
-									<li class="out">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar2.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Lisa Wong</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-											</span>
-										</div>
-									</li>
-									<li class="in">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Bob Nilson</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-											</span>
-										</div>
-									</li>
-									<li class="out">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar3.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Richard Doe</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-											</span>
-										</div>
-									</li>
-									<li class="in">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar3.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Richard Doe</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-											</span>
-										</div>
-									</li>
-									<li class="out">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Bob Nilson</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-											</span>
-										</div>
-									</li>
-									<li class="in">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar3.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Richard Doe</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-											sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-											</span>
-										</div>
-									</li>
-									<li class="out">
-										<img class="avatar img-responsive" alt="" src="${ctx}/assets/img/avatar1.jpg" />
-										<div class="message">
-											<span class="arrow"></span>
-											<a href="#" class="name">Bob Nilson</a>
-											<span class="datetime">at Jul 25, 2012 11:09</span>
-											<span class="body">
-											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod tincidunt ut laoreet.
-											</span>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="chat-form">
-								<div class="input-cont">   
-									<input class="form-control" type="text" placeholder="Type a message here..." />
-								</div>
-								<div class="btn-cont"> 
-									<span class="arrow"></span>
-									<a href="" class="btn blue icn-only"><i class="fa fa-check icon-white"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- END PORTLET-->
-				</div>
+			<!-- END BEGIN STYLE CUSTOMIZER --> 
+			<div class="page-content-body">
+				<!-- HERE WILL BE LOADED AN AJAX CONTENT -->
 			</div>
 		</div>
-		<!-- END PAGE -->
+		<!-- BEGIN PAGE -->     
 	</div>
 	<!-- END CONTAINER -->
 	<!-- BEGIN FOOTER -->
@@ -224,39 +146,32 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 	<!-- BEGIN CORE PLUGINS -->   
 	<!--[if lt IE 9]>
-	<script src="assets/plugins/respond.min.js"></script>
-	<script src="assets/plugins/excanvas.min.js"></script> 
+	<script src="${ctx}/assets/plugins/respond.min.js"></script>
+	<script src="${ctx}/assets/plugins/excanvas.min.js"></script> 
 	<![endif]-->   
-	<%@include file="/common/foot_js.jsp" %>
+	<script src="${ctx}/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="${ctx}/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>      
+	<script src="${ctx}/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
+	<script src="${ctx}/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>  
+	<script src="${ctx}/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="${ctx}/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
 	<!-- END CORE PLUGINS -->
-	<!-- BEGIN PAGE LEVEL PLUGINS -->
-	<script src="${ctx}/assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/plugins/flot/jquery.flot.resize.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>     
-	<script src="${ctx}/assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
-	<!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
-	<script src="${ctx}/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>  
-	<!-- END PAGE LEVEL PLUGINS -->
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-	<script src="${ctx}/assets/scripts/app.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/scripts/index.js" type="text/javascript"></script>
-	<script src="${ctx}/assets/scripts/tasks.js" type="text/javascript"></script>        
-	<!-- END PAGE LEVEL SCRIPTS -->  
+	<script type="text/javascript" src="${ctx}/assets/plugins/select2/select2.min.js"></script>
+	<script type="text/javascript" src="${ctx}/assets/plugins/data-tables/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="${ctx}/assets/plugins/data-tables/DT_bootstrap.js"></script>
+	 
+	<script  type="text/javascript" src="${ctx}/assets/scripts/table-editable.js"></script>    
+	<script  type="text/javascript" src="${ctx}/assets/scripts/app.js"></script> 
+	<script  type="text/javascript" src="${ctx}/assets/scripts/table-editable.js"></script>    
+	<script  type="text/javascript" src="${ctx}/assets/scripts/table-managed.js"></script>   
 	<script>
 		jQuery(document).ready(function() {    
-		   App.init(); // initlayout and core plugins
-		   Index.init();
-		   Index.initCalendar(); // init index page's custom scripts
-		   Index.initCharts(); // init index page's custom scripts
-		   Index.initChat();
-		   Index.initMiniCharts();
-		   Index.initDashboardDaterange();
-		   Index.initIntro();
-		   Tasks.initDashboardWidget();
+		   App.init();
+		   $('.page-sidebar .ajaxify.start').click(); // load the content for the dashboard page.
 		});
 	</script>
 	<!-- END JAVASCRIPTS -->

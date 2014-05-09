@@ -3,11 +3,17 @@ package org.ssh.service.process.impl;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
@@ -89,6 +95,7 @@ public class ProcessServiceImplTest extends
 		System.out.println(image);
 	}
 
+	
 	// @Test
 	public void testGetProcessInstance() {
 		List<HistoricProcessInstance> list = processService
@@ -100,7 +107,7 @@ public class ProcessServiceImplTest extends
 		}
 	}
 
-	@Test
+	// @Test
 	public void testGetHiTaskInstance() {
 		List<HistoricTaskInstance> tasks = processService
 				.getTasksHasFinished("1001");

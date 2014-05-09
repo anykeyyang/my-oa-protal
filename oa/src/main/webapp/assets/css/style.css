@@ -958,6 +958,20 @@ Page content
     min-height: auto;
 }
 
+.ie9 .page-content { 
+    padding: 20px;
+    margin-left: 225px; 
+    margin-top: 0px;
+    min-height: 760px;
+}
+
+.ie9 .page-sidebar-fixed .page-content {
+    min-height: 600px; 
+}
+
+.ie9 .page-content.no-min-height {
+    min-height: auto;
+}
 .page-full-width .page-content {
     margin-left: 0px !important;
 }

@@ -121,6 +121,8 @@ public interface ProcessService {
 	 * @return
 	 */
 	public String getProcessImage(String processDefinitionId);
+	
+	
 
 	/**
 	 * 获取流程xml各节点坐标

@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.FormService;
 import org.activiti.engine.HistoryService;
@@ -24,6 +25,7 @@ import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.impl.RepositoryServiceImpl;
+import org.activiti.engine.impl.bpmn.diagram.ProcessDiagramGenerator;
 import org.activiti.engine.impl.bpmn.parser.BpmnParser;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.persistence.entity.TaskEntity;
@@ -195,6 +197,7 @@ public class ProcessServiceImpl implements ProcessService {
 
 		return auditImage;
 	}
+
 
 	@Override
 	public Map<String, DiagramNode> getDiagramLayout(String processDefinitionId) {
@@ -703,12 +706,12 @@ public class ProcessServiceImpl implements ProcessService {
 		newTransition.setDestination(pointActivity);
 		// 执行转向任务
 		taskService.complete(taskId, variables);
-		
+
 		// 修改deleteReason
 		ActHiTaskinst hitaskInstance = processDao.gethiTaskInstanceByid(taskId);
 		hitaskInstance.setDeleteReason("withdraw");
 		processDao.update(hitaskInstance);
-		
+
 		// 删除目标节点新流入
 		pointActivity.getIncomingTransitions().remove(newTransition);
 

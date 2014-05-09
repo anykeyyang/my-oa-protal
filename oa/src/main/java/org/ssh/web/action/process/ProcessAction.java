@@ -102,8 +102,8 @@ public class ProcessAction extends BaseAction {
 				DiagramNode node = layout.get(key);
 				activity.setTask(taskInstance);
 				// 坐标修正
-				activity.setX(node.getX() + 4);
-				activity.setY(node.getY() + 30);
+				activity.setX(node.getX() + 26);
+				activity.setY(node.getY() + 47);
 				activity.setWidth(node.getWidth());
 				activity.setHeight(node.getHeight());
 				activity.setState("complete");
