@@ -13,20 +13,23 @@ public class UserAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	@Resource
 	private IuserBiz userBiz;
-	
+
 	private List<User> list;
 	private String email;
 	private String password;
 	private String username;
 
-	@Override
-	public String execute() {
+	public String login() {
 		try {
 			list = userBiz.getListUser();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return SUCCESS;
+	}
+
+	public String dashboard() {
+		return "dashboard";
 	}
 
 	public List<User> getList() {

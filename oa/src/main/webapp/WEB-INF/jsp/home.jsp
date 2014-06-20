@@ -29,6 +29,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	<!-- END GLOBAL MANDATORY STYLES -->
 	<!-- BEGIN PAGE LEVEL STYLES -->
 	<link rel="stylesheet" type="text/css" href="${ctx}/assets/plugins/select2/select2_metro.css" />
+	<link href="${ctx}/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" type="text/css" rel="stylesheet" />
 	<!-- END PAGE LEVEL STYLES -->
 	<!-- BEGIN THEME STYLES --> 
 	<link href="${ctx}/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
@@ -36,7 +37,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	<link href="${ctx}/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
 	<link href="${ctx}/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
 	<link href="${ctx}/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-	<link rel="stylesheet" href="${ctx}/assets/plugins/data-tables/DT_bootstrap.css" />
+	<link href="${ctx}/assets/plugins/data-tables/DT_bootstrap.css" rel="stylesheet"/>
+	
 	<link href="${ctx}/assets/css/custom.css" rel="stylesheet" type="text/css"/>
 	<!-- END THEME STYLES -->
 	<link rel="shortcut icon" href="${ctx}/favicon.ico" />
@@ -163,11 +165,13 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 	<script type="text/javascript" src="${ctx}/assets/plugins/select2/select2.min.js"></script>
 	<script type="text/javascript" src="${ctx}/assets/plugins/data-tables/jquery.dataTables.js"></script>
 	<script type="text/javascript" src="${ctx}/assets/plugins/data-tables/DT_bootstrap.js"></script>
+	<script type="text/javascript" src="${ctx}/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js"></script>
 	 
 	<script  type="text/javascript" src="${ctx}/assets/scripts/table-editable.js"></script>    
 	<script  type="text/javascript" src="${ctx}/assets/scripts/app.js"></script> 
 	<script  type="text/javascript" src="${ctx}/assets/scripts/table-editable.js"></script>    
-	<script  type="text/javascript" src="${ctx}/assets/scripts/table-managed.js"></script>   
+	<script  type="text/javascript" src="${ctx}/assets/scripts/table-managed.js"></script>  
+	<script  type="text/javascript" src="${ctx}/assets/scripts/calendar.js"></script>    
 	<script>
 		jQuery(document).ready(function() {    
 		   App.init();

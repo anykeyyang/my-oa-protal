@@ -109,6 +109,17 @@
 				<value>classpath*:bpmn/*</value>
 			</list>
 		</property>
+		
+		<!-- 任务监听 -->
+		<property name="typedEventListeners">
+			<map>
+				<entry key="TASK_ASSIGNED">
+					<list>
+						<bean class="org.ssh.listener.TaskDelegateListener" />
+					</list>
+				</entry>
+			</map>
+		</property>
 	</bean>
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />

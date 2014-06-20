@@ -3,9 +3,11 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<package name="web" extends="struts-default">
-		<action name="user" class="org.ssh.web.action.UserAction">
+	<package name="user" extends="struts-default">
+		<action name="user_*" class="org.ssh.web.action.UserAction"
+			method="{1}">
 			<result name="success">/WEB-INF/jsp/home.jsp</result>
+			<result name="dashboard">/WEB-INF/jsp/user/user_dashboard.jsp</result>
 		</action>
 	</package>
 	<include file="struts/struts-process.xml"></include>

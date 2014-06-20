@@ -53,7 +53,7 @@ public class ProcessServiceImplTest extends
 		}
 	}
 
-	// @Test
+	//@Test
 	public void testStartProcess() {
 		ProcessInstance instance = processService.startProcessInstance(
 				"leave:1:4", BusinessKey.PROCESS_LEAVE, "kafeitu");
@@ -63,7 +63,7 @@ public class ProcessServiceImplTest extends
 
 	// @Test
 	public void testGetUserTask() {
-		List<Task> tasks = processService.getUserTask("leaderuser");
+		List<Task> tasks = processService.getUserTask("yangaj");
 		assertNotNull(tasks);
 		for (Task task : tasks) {
 			System.out.println("tid:" + task.getId());
@@ -118,14 +118,14 @@ public class ProcessServiceImplTest extends
 		}
 	}
 
-	// @Test
+	//@Test
 	public void testClaim() {
-		processService.claimTask("1502", "leaderuser");
+		processService.claimTask("1107", "kafeitu");
 	}
 
-	// @Test
+	 @Test
 	public void testCompleteTask() {
-		boolean flag = processService.completeTask("1502", null);
+		boolean flag = processService.completeTask("2207", null);
 		assertTrue(flag);
 	}
 

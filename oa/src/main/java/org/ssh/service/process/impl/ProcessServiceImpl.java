@@ -91,6 +91,7 @@ public class ProcessServiceImpl implements ProcessService {
 		List<Task> tasksNeedtobeClaimed = taskService.createTaskQuery()
 				.taskCandidateGroupIn(groups).taskUnassigned().list();
 		userTasks.addAll(tasksNeedtobeClaimed);
+		
 		return userTasks;
 	}
 
@@ -197,7 +198,6 @@ public class ProcessServiceImpl implements ProcessService {
 
 		return auditImage;
 	}
-
 
 	@Override
 	public Map<String, DiagramNode> getDiagramLayout(String processDefinitionId) {
@@ -784,6 +784,21 @@ public class ProcessServiceImpl implements ProcessService {
 		bounds.setWidth(Double.valueOf(boundsElement.getAttribute("width")));
 		bounds.setHeight(Double.valueOf(boundsElement.getAttribute("height")));
 		return bounds;
+	}
+
+	@Override
+	public boolean resolveTask(String taskId, Map<String, Object> variables) {
+		try {
+			this.taskService.resolveTask(taskId, variables);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public void delegateTask(String taskId, String userId) {
+		this.taskService.delegateTask(taskId, userId);
 	}
 
 }

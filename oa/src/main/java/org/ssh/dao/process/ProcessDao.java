@@ -21,5 +21,5 @@ public class ProcessDao extends BaseDao<ActHiTaskinst> {
 			return null;
 		}
 	}
-
+	
 }

@@ -219,14 +219,8 @@ public class BaseDao<T extends Serializable> {
 	 */
 	public List<T> findByCriteria(Criteria criteria) throws Exception {
 		List<T> list = null;
-		Session session = null;
 		try {
-			session = getCurrentSession();
-			session.beginTransaction();
-			Criteria criteria1 = session.createCriteria(getEntityClass());
-			criteria1 = criteria;
-			list = criteria1.list();
-			session.getTransaction().commit();
+			list = criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} 

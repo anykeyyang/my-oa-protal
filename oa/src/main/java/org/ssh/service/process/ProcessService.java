@@ -89,6 +89,14 @@ public interface ProcessService {
 	public void claimTask(String taskId, String userId);
 
 	/**
+	 * 任务委派
+	 * 
+	 * @param taskId
+	 * @param userId
+	 */
+	public void delegateTask(String taskId, String userId);
+
+	/**
 	 * 获取绑定的表单
 	 * 
 	 * @param taskId
@@ -115,14 +123,21 @@ public interface ProcessService {
 	public <T> Boolean completeTask(String taskId, T t);
 
 	/**
+	 * 处理委派任务
+	 * 
+	 * @param taskId
+	 * @param variables
+	 * @return
+	 */
+	public boolean resolveTask(String taskId, Map<String, Object> variables);
+
+	/**
 	 * 获取流程图片
 	 * 
 	 * @param processInstanceId
 	 * @return
 	 */
 	public String getProcessImage(String processDefinitionId);
-	
-	
 
 	/**
 	 * 获取流程xml各节点坐标
